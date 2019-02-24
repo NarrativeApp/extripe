@@ -19,7 +19,7 @@ defmodule Extripe.Mixfile do
   end
 
   defp deps do
-    [{:httpoison, "~> 1.4"}, {:poison, "~> 2.0 or ~> 3.0"}, {:ex_doc, "~> 0.13", only: :dev}]
+    [{:httpoison, "~> 1.5"}, {:poison, "~> 2.0 or ~> 3.0"}, {:ex_doc, "~> 0.13", only: :dev}]
   end
 
   defp description do

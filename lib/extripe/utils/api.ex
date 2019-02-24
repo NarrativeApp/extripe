@@ -1,7 +1,7 @@
 defmodule Extripe.Utils.API do
   use HTTPoison.Base
 
-  defp process_url(url) do
+  def process_request_url(url) do
     [
       "https://",
       Application.get_env(
@@ -9,24 +9,26 @@ defmodule Extripe.Utils.API do
         :stripe_secret_key,
         System.get_env("stripe_secret_key")
       ),
-     ":@api.stripe.com/v1",
-     url
-   ]
+      ":@api.stripe.com/v1",
+      url
+    ]
+    |> Enum.join()
   end
 
-  defp process_request_body(body) when is_binary(body), do: body
-  defp process_request_body(body) do
+  def process_request_body(body) when is_binary(body), do: body
+
+  def process_request_body(body) do
     body
-    |> Extripe.Utils.Params.normalize
-    |> URI.encode_query
+    |> Extripe.Utils.Params.normalize()
+    |> URI.encode_query()
   end
 
-  defp process_request_headers(headers) do
+  def process_request_headers(headers) do
     [{"content-type", "application/x-www-form-urlencoded"} | headers]
   end
 
-  defp process_response_body(body) do
-    Poison.decode! body
+  def process_response_body(body) do
+    Poison.decode!(body)
   end
 
   def get(url), do: super(url) |> ok_error
