@@ -4,7 +4,7 @@ defmodule Extripe.Mixfile do
   def project do
     [
       app: :extripe,
-      version: "1.2.3",
+      version: "1.2.4",
       elixir: "~> 1.3",
       description: description(),
       package: package(),
